@@ -1,25 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState, useEffect} from 'react';
+import Header from './components/header'
+import Characters from './components/characters';
+import Search from './components/search';
+
 
 function App() {
+      const [actors, setActors] = useState([]);
+  const [load, setLoad] = useState(true);
+  const [query, setQuery] = useState('')
+
+      useEffect(() => {
+        fetchCharacters();
+      }, [query]);
+
+      const fetchCharacters = async () => {
+        fetch(`https://www.breakingbadapi.com/api/characters?name=${query}`)
+          .then((res) => res.json())
+          .then((data) => {
+            // console.log(data)
+            let few = data.slice(5, 30)
+            setActors(few);
+            setLoad(false);
+            // console.log(actors)
+          })
+          .catch((err) => console.log(err));
+      };
+
+  const chek = (q) => {
+    setQuery(q)
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className="App">
+      <Header />
+      <Search query={chek}/>
+      <Characters actors={actors} load={load}/>
+      </div>
   );
 }
 

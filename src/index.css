@@ -6,8 +6,163 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body{
+  height: 100%;
+  font-family: 'Montserrat', sans-serif;
+}
+
+
+
+.App{
+  background-image: url('./img/bg.jpg');
+  background-repeat: repeat;
+  background-position: top;
+  height: 100%;
+  background-color: rgb(9, 56, 9);
+}
+
+.header{
+  padding: 1rem;
+  width: 100%;   
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header img{
+  width: 8rem;
+}
+
+.datas{
+  display: flex;
+  justify-content: center ;
+  align-items: center;
+  width: 98%;
+  margin: 0 auto;
+  padding: 1rem;  
+}
+
+.spinner{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.spinner img{
+  width: 8rem;
+}
+
+.characters{
+  padding: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 2rem;
+  max-width: 1200px;
+  width: 100%; 
+  height: 100%;
+}
+
+.search{
+  margin: 0 auto;
+  width: 100%;
+  margin: 1rem auto;
+  padding: 1rem;
+}
+
+.search-form{
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  flex-direction: column;
+}
+
+.search-word{
+  text-align: center;
+  margin-bottom: 0.8rem;
+  font-size: 1.3rem;
+  color: white;
+}
+
+.search-input{
+  width: 20rem;
+  max-width: 90%;
+  padding: 0.6rem;
+  border-radius: 0.2rem;
+  outline-color: none;
+  outline: none;
+  border: 0;
+  font-size: 1rem;
+}
+
+
+.Image{
+  height: 100%;
+  width: 100%;
+}
+
+.middle{
+  position: absolute;
+}
+
+.card {
+  width: 300px;
+  height: 400px;
+  perspective: 1200px;
+  position: relative;
+  cursor: pointer;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+} 
+
+.card-face{
+  height: 100%;
+  width: 100%;
+  border-radius: 0.9rem;
+  overflow:hidden;
+  backface-visibility: hidden;
+  position: absolute;
+  transition: transform .6s linear;
+}
+
+.card__face--front{
+  transform: perspective(600px) rotateY(0deg);
+}
+.card__face--back{
+  background: #FFD543;
+  transform: perspective(600px) rotateY(180deg);
+}
+
+.content{
+  height: 60%;
+  color: black;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.card:hover > .card__face--front{
+  transform: perspective(600px) rotateY(-180deg);
+}
+.card:hover > .card__face--back{
+  transform: perspective(600px) rotateY(0deg);
+}
+
+.name{
+  padding-bottom: 1rem;
+}
+.name > span{
+  text-decoration: underline;
 }
